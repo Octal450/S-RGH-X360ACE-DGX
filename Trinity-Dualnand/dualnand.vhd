@@ -18,9 +18,9 @@ end dualnand;
 
 architecture arch of dualnand is
 
-signal counter : integer range 0 to 511 := 0;
-signal counter_smc : integer range 0 to 127 := 0;
-signal counter_dbg : unsigned(9 downto 0) := (others => '0');
+signal counter : integer range 0 to 7 := 0;
+signal counter_smc : integer range 0 to 1 := 0;
+signal counter_dbg : unsigned(3 downto 0) := (others => '0');
 signal switch : STD_LOGIC := '1';
 signal pre_sw : STD_LOGIC := '1';
 signal m_CES : STD_LOGIC := '1';
@@ -52,10 +52,10 @@ begin
 		if (BUT = '1') then
 			counter <= 0;
 		else
-			if (RST = '0' and counter /= 511 and to_integer(counter_dbg) = 0) then
+			if (RST = '0' and counter /= 7 and to_integer(counter_dbg) = 0) then
 				counter <= counter + 1;
 			else
-				if (RST = '0' and counter = 511) then
+				if (RST = '0' and counter = 7) then
 					counter <= 0;
 					switch <= not switch;
 				end if;
@@ -67,13 +67,13 @@ begin
 			if (switch = '0') then
 				m_CED <= '1';
 				m_CES <= '0';
-				counter_dbg <= b"1111111111";
-				counter_smc <= 127;
+				counter_dbg <= b"1111";
+				counter_smc <= 1;
 			else
 				m_CED <= '0';
 				m_CES <= '1';
-				counter_dbg <= b"0111111111";
-				counter_smc <= 127;
+				counter_dbg <= b"0111";
+				counter_smc <= 1;
 			end if;
 		end if;
 		
@@ -91,7 +91,7 @@ begin
 		end if;
 	end if;
 	
-	DBG <= counter_dbg(8);
+	DBG <= counter_dbg(2);
 end process;
 
 end arch;

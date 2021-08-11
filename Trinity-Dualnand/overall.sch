@@ -22,6 +22,7 @@
         <signal name="CLK" />
         <signal name="XLXN_188" />
         <signal name="XLXN_189" />
+        <signal name="XLXN_190" />
         <port polarity="Input" name="POST" />
         <port polarity="Output" name="SDA" />
         <port polarity="Output" name="SCL" />
@@ -84,6 +85,12 @@
             <arc ex="112" ey="-144" sx="192" sy="-96" r="88" cx="116" cy="-56" />
             <line x2="48" y1="-48" y2="-48" x1="112" />
         </blockdef>
+        <blockdef name="divider_dual">
+            <timestamp>2021-5-28T1:42:4</timestamp>
+            <rect width="256" x="64" y="-64" height="64" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
+        </blockdef>
         <block symbolname="post_proc" name="XLXI_7">
             <blockpin signalname="POST" name="POST" />
             <blockpin signalname="CLK" name="CLK" />
@@ -99,8 +106,8 @@
         <block symbolname="slower" name="XLXI_9">
             <blockpin signalname="SCL" name="SCL" />
             <blockpin signalname="SDA" name="SDA" />
-            <blockpin signalname="XLXN_76" name="in_slow" />
             <blockpin signalname="XLXN_189" name="CLK" />
+            <blockpin signalname="XLXN_76" name="in_slow" />
         </block>
         <block symbolname="divider_slow" name="XLXI_10">
             <blockpin signalname="CLK" name="CLK" />
@@ -114,7 +121,7 @@
         <block symbolname="dualnand" name="XLXI_15">
             <blockpin signalname="RST" name="RST" />
             <blockpin signalname="BUT" name="BUT" />
-            <blockpin signalname="XLXN_188" name="CLK" />
+            <blockpin signalname="XLXN_190" name="CLK" />
             <blockpin signalname="CES" name="CES" />
             <blockpin signalname="CED" name="CED" />
             <blockpin signalname="SMC" name="SMC" />
@@ -123,6 +130,10 @@
         <block symbolname="divider_slow" name="XLXI_19">
             <blockpin signalname="XLXN_189" name="CLK" />
             <blockpin signalname="XLXN_188" name="CLK_S" />
+        </block>
+        <block symbolname="divider_dual" name="XLXI_20">
+            <blockpin signalname="XLXN_188" name="CLK" />
+            <blockpin signalname="XLXN_190" name="CLK_D" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -197,16 +208,6 @@
             <wire x2="1024" y1="1216" y2="1216" x1="1008" />
         </branch>
         <iomarker fontsize="28" x="992" y="1216" name="CLK" orien="R180" />
-        <branch name="XLXN_188">
-            <wire x2="1440" y1="1152" y2="1664" x1="1440" />
-            <wire x2="1584" y1="1664" y2="1664" x1="1440" />
-            <wire x2="1568" y1="1152" y2="1152" x1="1440" />
-            <wire x2="1584" y1="1152" y2="1152" x1="1568" />
-            <wire x2="1568" y1="960" y2="1152" x1="1568" />
-            <wire x2="2528" y1="960" y2="960" x1="1568" />
-            <wire x2="2528" y1="960" y2="1312" x1="2528" />
-            <wire x2="2528" y1="1312" y2="1312" x1="2384" />
-        </branch>
         <branch name="XLXN_189">
             <wire x2="1984" y1="1312" y2="1312" x1="1968" />
             <wire x2="2000" y1="1312" y2="1312" x1="1984" />
@@ -215,5 +216,22 @@
         </branch>
         <instance x="2000" y="1344" name="XLXI_19" orien="R0">
         </instance>
+        <branch name="XLXN_188">
+            <wire x2="1440" y1="1328" y2="1328" x1="1008" />
+            <wire x2="1008" y1="1328" y2="1664" x1="1008" />
+            <wire x2="1024" y1="1664" y2="1664" x1="1008" />
+            <wire x2="1568" y1="1152" y2="1152" x1="1440" />
+            <wire x2="1584" y1="1152" y2="1152" x1="1568" />
+            <wire x2="1440" y1="1152" y2="1328" x1="1440" />
+            <wire x2="2528" y1="960" y2="960" x1="1568" />
+            <wire x2="2528" y1="960" y2="1312" x1="2528" />
+            <wire x2="1568" y1="960" y2="1152" x1="1568" />
+            <wire x2="2528" y1="1312" y2="1312" x1="2384" />
+        </branch>
+        <instance x="1024" y="1696" name="XLXI_20" orien="R0">
+        </instance>
+        <branch name="XLXN_190">
+            <wire x2="1584" y1="1664" y2="1664" x1="1408" />
+        </branch>
     </sheet>
 </drawing>

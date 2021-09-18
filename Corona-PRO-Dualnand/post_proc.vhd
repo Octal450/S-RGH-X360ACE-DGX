@@ -42,12 +42,12 @@ end process;
 process (POST) is
 begin
 	if (POST'event) then
-		if (RST = '1') then
+		if (RST = '0') then
+			post_cnt <= 0;
+		else
 			if (stop = '0') then
 				post_cnt <= post_cnt + 1;
 			end if;
-		else
-			post_cnt <= 0;
 		end if;
 	end if;
 	
